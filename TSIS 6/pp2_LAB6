@@ -1,0 +1,202 @@
+Python builtin functions exercises
+1. Python program with builtin function to multiply all the numbers in a list
+def multiply(numbers):  
+    total = 1
+    for x in numbers:
+        total *= x  
+    return total  
+print(multiply((8, 2, 3, -1, 7)))
+-336
+2. Python program with builtin f that accepts a string and calculate the number of upper case letters and lower case letters
+def string_test(s):
+    d={"UPPER_CASE":0, "LOWER_CASE":0}
+    for c in s:
+        if c.isupper():
+           d["UPPER_CASE"]+=1
+        elif c.islower():
+           d["LOWER_CASE"]+=1
+        else:
+           pass
+    print ("Original String : ", s)
+    print ("No. of Upper case characters : ", d["UPPER_CASE"])
+    print ("No. of Lower case Characters : ", d["LOWER_CASE"])
+​
+string_test('The quick Brown Fox')
+Original String :  The quick Brown Fox
+No. of Upper case characters :  3
+No. of Lower case Characters :  13
+3. Python program with builtin function that checks whether a passed string is palindrome or not.
+def isPalindrome(string):
+    left_pos = 0
+    right_pos = len(string) - 1
+    
+    while right_pos >= left_pos:
+        if not string[left_pos] == string[right_pos]:
+            return False
+        left_pos += 1
+        right_pos -= 1
+    return True
+print(isPalindrome('aza'))
+True
+4. Python program that invoke square root function after specific milliseconds.
+from time import sleep
+import math
+def delay(fn, ms, *args):
+  sleep(ms / 1000)
+  return fn(*args)
+print("Sample Input:") 
+print(delay(lambda x: math.sqrt(x), 100, 16))
+print(delay(lambda x: math.sqrt(x), 1000, 100))
+print("Sample Output:")
+print(delay(lambda x: math.sqrt(x), 2000, 25100))
+Sample Input:
+4.0
+10.0
+Sample Output:
+158.42979517754858
+5. Python program with builtin function that returns True if all elements of the tuple are true.
+# All elements of list are true
+l = [4, 5, 1]
+print(all(l))
+ 
+# All elements of list are false
+l = [0, 0, False]
+print(all(l))
+ 
+# Some elements of list are
+# true while others are false
+l = [1, 0, 6, 7, False]
+print(all(l))
+ 
+# Empty List
+l = []
+print(all(l))
+ 
+# all() with condition - to check if all elements are greater than 0
+l = [1,-3,0,2,4]
+print(all(ele > 0 for ele in l))
+True
+False
+False
+True
+False
+Python Directories and Files exercises
+1. Python program to list only directories, files and all directories, files in a specified path.
+​
+Only directories:
+---------------------------------------------------------------------------
+FileNotFoundError                         Traceback (most recent call last)
+~\AppData\Local\Temp\ipykernel_8108\1491258544.py in <module>
+      2 path = 'g:\\testpath\\'
+      3 print("Only directories:")
+----> 4 print([ name for name in os.listdir(path) if os.path.isdir(os.path.join(path, name)) ])
+      5 print("\nOnly files:")
+      6 print([ name for name in os.listdir(path) if not os.path.isdir(os.path.join(path, name)) ])
+
+FileNotFoundError: [WinError 3] Системе не удается найти указанный путь: 'g:\\testpath\\'
+
+2. Python program to check for access to a specified path. Test the existence, readability, writability and executability
+import os
+print('Exist:', os.access('c:\\Users\\Public\\C programming library.docx', os.F_OK))
+print('Readable:', os.access('c:\\Users\\Public\\C programming library.docx', os.R_OK))
+print('Writable:', os.access('c:\\Users\\Public\\C programming library.docx', os.W_OK))
+print('Executable:', os.access('c:\\Users\\Public\\C programming library.docx', os.X_OK))
+Exist: False
+Readable: False
+Writable: False
+Executable: False
+3. Python program to test whether a given path exists or not. If it does find the filename and directory portion path.
+import os
+print("Test a path exists or not:")
+path = r'g:\\testpath\\a.txt'
+print(os.path.exists(path))
+path = r'g:\\testpath\\p.txt'
+print(os.path.exists(path))
+print("\nFile name of the path:")
+print(os.path.basename(path))
+print("\nDir name of the path:")
+print(os.path.dirname(path))
+Test a path exists or not:
+False
+False
+
+File name of the path:
+p.txt
+
+Dir name of the path:
+g:\\testpath
+4. Python program to count the number of lines in a text file.
+# Opening a file
+file = open("gfg.txt", "r")
+Counter = 0
+​
+# Reading from file
+Content = file.read()
+CoList = Content.split("\n")
+​
+for i in CoList:
+    if i:
+        Counter += 1
+​
+print("This is the number of lines in the file")
+print(Counter)
+
+5. Python program to write a list to a file.
+color = ['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']
+with open('abc.txt', "w") as myfile:
+        for c in color:
+                myfile.write("%s\n" % c)
+content = open('abc.txt')
+print(content.read())
+Red
+Green
+White
+Black
+Pink
+Yellow
+
+6. Python program to generate 26 text files named A.txt, B.txt, and so on up to Z.txt
+import string
+for letter in string.ascii_uppercase:
+    fd = open(letter + ".txt", "w")
+    print(fd)
+<_io.TextIOWrapper name='A.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='B.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='C.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='D.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='E.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='F.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='G.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='H.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='I.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='J.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='K.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='L.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='M.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='N.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='O.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='P.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='Q.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='R.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='S.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='T.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='U.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='V.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='W.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='X.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='Y.txt' mode='w' encoding='cp1251'>
+<_io.TextIOWrapper name='Z.txt' mode='w' encoding='cp1251'>
+7. Python program to copy the contents of a file to another file
+with open("test.txt") as f:
+    with open("out.txt", "w") as f1:
+        for line in f:
+            f1.write(line)
+
+
+8. Python program to delete file by specified path. Before deleting check for access and whether a given path exists or not.
+import os
+if os.path.exists("demofile.txt"):
+  os.remove("demofile.txt")
+else:
+  print("The file does not exist")
+The file does not exist
