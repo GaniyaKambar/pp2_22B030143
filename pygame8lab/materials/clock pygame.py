@@ -1,0 +1,43 @@
+import pygame, os
+import datetime
+
+pygame.init()
+Clock = pygame.time.Clock()
+pygame.display.set_caption('Clock')
+screen = pygame.display.set_mode((512,512))
+
+image = pygame.image.load('Clockimg/hour.png')
+image1 = pygame.image.load('Clockimg/min.png')
+image2 = pygame.image.load('Clockimg/sec.png')
+angle = 0
+x = 256
+y = 256
+
+while True:
+    t = datetime.datetime.now()
+
+    screen.fill((255,255,255))
+    screen.blit(pygame.image.load('Clockimg/Clock-Transparent.png'), (0,0))
+    h = int(t.strftime('%H'))
+    m = int(t.strftime('%M'))
+    s = int(t.strftime('%S'))
+    angle = -h*30
+    angle1 = -m*6
+    angle2 = -s*6
+    img = pygame.transform.rotate(image , angle)
+    img1 = pygame.transform.rotate(image1 , angle1)
+    img2 = pygame.transform.rotate(image2 , angle2)
+    img.set_colorkey((255, 255, 255))
+    img1.set_colorkey((255, 255, 255))
+    img2.set_colorkey((255, 255, 255))
+    screen.blit(img, (x - int(img.get_width() / 2) , y - int(img.get_height() / 2)))
+    screen.blit(img1, (x - int(img1.get_width() / 2) , y - int(img1.get_height() / 2)))
+    screen.blit(img2, (x - int(img2.get_width() / 2) , y - int(img2.get_height() / 2)))
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+
+    
+    pygame.display.flip()
+    Clock.tick(60)
